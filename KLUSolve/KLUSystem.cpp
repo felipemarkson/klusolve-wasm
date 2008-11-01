@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------------------- */
+/* KLUSolve, Copyright (c) 2008, EnerNex Corporation. All rights reserved.   */
+/* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
+/* ------------------------------------------------------------------------- */
+
 #include "stdafx.h"
 
 #define KLU_API extern "C" __declspec(dllexport)

@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------------------- */
+/* KLUSolve, Copyright (c) 2008, EnerNex Corporation. All rights reserved.   */
+/* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
+/* ------------------------------------------------------------------------- */
+
 #ifndef klusystem_included
 #define klusystem_included
 

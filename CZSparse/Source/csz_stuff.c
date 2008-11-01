@@ -1,7 +1,15 @@
+/* ------------------------------------------------------------------------- */
+/* CZSparse, Copyright (c) 2008, EnerNex Corporation. All rights reserved.   */
+/* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
+/* ------------------------------------------------------------------------- */
+
+/* These are complex versions of selected functions from the CSparse package
+ * by Timothy A. Davis. The purpose is to compile on Windows without a C99
+ * compiler.  A->x stores alternate real/imaginary values.
+ */
+
 #include "cs.h"
 #include "csz.h"
-
-/* complex CSparse functions, with A->x storing alternate real/imaginary values */
 
 /* allocate a sparse matrix (triplet form or compressed-column form) */
 cs *csz_spalloc (int m, int n, int nzmax, int values, int triplet)

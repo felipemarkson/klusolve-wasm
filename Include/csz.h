@@ -1,3 +1,7 @@
+/* ------------------------------------------------------------------------- */
+/* CZSparse, Copyright (c) 2008, EnerNex Corporation. All rights reserved.   */
+/* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
+/* ------------------------------------------------------------------------- */
 cs *csz_spalloc (int m, int n, int nzmax, int values, int triplet);
 
 int csz_sprealloc (cs *A, int nzmax);

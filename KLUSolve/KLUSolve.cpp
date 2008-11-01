@@ -1,3 +1,8 @@
+/* ------------------------------------------------------------------------- */
+/* KLUSolve, Copyright (c) 2008, EnerNex Corporation. All rights reserved.   */
+/* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
+/* ------------------------------------------------------------------------- */
+
 // KLUSolve.cpp : Defines the entry point for the DLL application.
 //
 
