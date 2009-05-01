@@ -1,93 +1,144 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="9.00"
 	Name="CSparse"
 	ProjectGUID="{24630016-5864-4B79-BD0E-0FA4EE63B22D}"
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\Lib"
 			IntermediateDirectory="Debug"
 			ConfigurationType="4"
-			CharacterSet="0">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="Include;../Include"
-				MinimalRebuild="TRUE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)/$(ProjectName)d.lib"/>
+				OutputFile="$(OutDir)/$(ProjectName)d.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\Lib"
 			IntermediateDirectory="Release"
 			ConfigurationType="4"
-			CharacterSet="0">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="0"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="Include;../Include"
-				RuntimeLibrary="4"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
-				Name="VCLibrarianTool"/>
+				Name="VCResourceCompilerTool"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCLibrarianTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -96,183 +147,241 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
 			<File
-				RelativePath=".\Source\cs_add.c">
+				RelativePath=".\Source\cs_add.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_amd.c">
+				RelativePath=".\Source\cs_amd.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_chol.c">
+				RelativePath=".\Source\cs_chol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_cholsol.c">
+				RelativePath=".\Source\cs_cholsol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_compress.c">
+				RelativePath=".\Source\cs_compress.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_counts.c">
+				RelativePath=".\Source\cs_counts.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_cumsum.c">
+				RelativePath=".\Source\cs_cumsum.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_dfs.c">
+				RelativePath=".\Source\cs_dfs.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_dmperm.c">
+				RelativePath=".\Source\cs_dmperm.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_droptol.c">
+				RelativePath=".\Source\cs_droptol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_dropzeros.c">
+				RelativePath=".\Source\cs_dropzeros.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_dupl.c">
+				RelativePath=".\Source\cs_dupl.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_entry.c">
+				RelativePath=".\Source\cs_entry.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_ereach.c">
+				RelativePath=".\Source\cs_ereach.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_etree.c">
+				RelativePath=".\Source\cs_etree.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_fkeep.c">
+				RelativePath=".\Source\cs_fkeep.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_gaxpy.c">
+				RelativePath=".\Source\cs_gaxpy.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_happly.c">
+				RelativePath=".\Source\cs_happly.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_house.c">
+				RelativePath=".\Source\cs_house.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_ipvec.c">
+				RelativePath=".\Source\cs_ipvec.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_leaf.c">
+				RelativePath=".\Source\cs_leaf.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_load.c">
+				RelativePath=".\Source\cs_load.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_lsolve.c">
+				RelativePath=".\Source\cs_lsolve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_ltsolve.c">
+				RelativePath=".\Source\cs_ltsolve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_lu.c">
+				RelativePath=".\Source\cs_lu.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_lusol.c">
+				RelativePath=".\Source\cs_lusol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_malloc.c">
+				RelativePath=".\Source\cs_malloc.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_maxtrans.c">
+				RelativePath=".\Source\cs_maxtrans.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_multiply.c">
+				RelativePath=".\Source\cs_multiply.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_norm.c">
+				RelativePath=".\Source\cs_norm.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_permute.c">
+				RelativePath=".\Source\cs_permute.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_pinv.c">
+				RelativePath=".\Source\cs_pinv.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_post.c">
+				RelativePath=".\Source\cs_post.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_print.c">
+				RelativePath=".\Source\cs_print.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_pvec.c">
+				RelativePath=".\Source\cs_pvec.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_qr.c">
+				RelativePath=".\Source\cs_qr.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_qrsol.c">
+				RelativePath=".\Source\cs_qrsol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_randperm.c">
+				RelativePath=".\Source\cs_randperm.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_reach.c">
+				RelativePath=".\Source\cs_reach.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_scatter.c">
+				RelativePath=".\Source\cs_scatter.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_scc.c">
+				RelativePath=".\Source\cs_scc.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_schol.c">
+				RelativePath=".\Source\cs_schol.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_spsolve.c">
+				RelativePath=".\Source\cs_spsolve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_sqr.c">
+				RelativePath=".\Source\cs_sqr.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_symperm.c">
+				RelativePath=".\Source\cs_symperm.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_tdfs.c">
+				RelativePath=".\Source\cs_tdfs.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_transpose.c">
+				RelativePath=".\Source\cs_transpose.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_updown.c">
+				RelativePath=".\Source\cs_updown.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_usolve.c">
+				RelativePath=".\Source\cs_usolve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_util.c">
+				RelativePath=".\Source\cs_util.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\cs_utsolve.c">
+				RelativePath=".\Source\cs_utsolve.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 			<File
-				RelativePath="..\Include\cs.h">
+				RelativePath="..\Include\cs.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Doc"
-			Filter="">
+			>
 			<File
-				RelativePath=".\Doc\ChangeLog">
+				RelativePath=".\Doc\ChangeLog"
+				>
 			</File>
 			<File
-				RelativePath=".\Doc\lesser.txt">
+				RelativePath=".\Doc\lesser.txt"
+				>
 			</File>
 			<File
-				RelativePath=".\Doc\License.txt">
+				RelativePath=".\Doc\License.txt"
+				>
 			</File>
 			<File
-				RelativePath=".\README.txt">
+				RelativePath=".\README.txt"
+				>
 			</File>
 		</Filter>
 	</Files>

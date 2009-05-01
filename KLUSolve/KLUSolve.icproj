@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="KLUSolve"
+	ProjectGUID="{962968EB-10AA-4E79-A78E-387BA8855AED}"
+	VCNestedProjectGUID="{445DFB84-9E10-4615-9E50-BE154CEBC811}"
+	VCNestedProjectFileName="KLUSolve.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

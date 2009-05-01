@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="BTF"
+	ProjectGUID="{3CCA66F8-3024-4B87-81A0-8E2D8938F032}"
+	VCNestedProjectGUID="{152BEAAD-1401-4598-A547-269CAB0B4396}"
+	VCNestedProjectFileName="BTF.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

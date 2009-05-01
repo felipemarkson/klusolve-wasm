@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="AMD"
+	ProjectGUID="{4686D206-86BC-449C-B744-9C649D25D903}"
+	VCNestedProjectGUID="{94DAF858-423E-4847-9FF2-869D909097A1}"
+	VCNestedProjectFileName="AMD.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="CSparse"
+	ProjectGUID="{23260122-0E6D-4DF5-A85C-40A76F7620ED}"
+	VCNestedProjectGUID="{24630016-5864-4B79-BD0E-0FA4EE63B22D}"
+	VCNestedProjectFileName="CSparse.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

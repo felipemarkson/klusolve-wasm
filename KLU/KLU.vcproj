@@ -1,95 +1,146 @@
 <?xml version="1.0" encoding="Windows-1252"?>
 <VisualStudioProject
 	ProjectType="Visual C++"
-	Version="7.10"
+	Version="9.00"
 	Name="KLU"
 	ProjectGUID="{81B5B36B-FB38-4042-A266-289E06496D36}"
-	Keyword="Win32Proj">
+	Keyword="Win32Proj"
+	TargetFrameworkVersion="131072"
+	>
 	<Platforms>
 		<Platform
-			Name="Win32"/>
+			Name="Win32"
+		/>
 	</Platforms>
+	<ToolFiles>
+	</ToolFiles>
 	<Configurations>
 		<Configuration
 			Name="Debug|Win32"
 			OutputDirectory="..\Lib"
 			IntermediateDirectory="Debug"
 			ConfigurationType="4"
-			CharacterSet="2">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="0"
 				AdditionalIncludeDirectories="Include;../Include"
 				PreprocessorDefinitions="WIN32;_DEBUG;_CONSOLE"
-				MinimalRebuild="TRUE"
+				MinimalRebuild="true"
 				BasicRuntimeChecks="3"
-				RuntimeLibrary="5"
+				RuntimeLibrary="1"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="4"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="4"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCResourceCompilerTool"
+			/>
+			<Tool
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
 				Name="VCLibrarianTool"
-				OutputFile="$(OutDir)/$(ProjectName)d.lib"/>
+				OutputFile="$(OutDir)/$(ProjectName)d.lib"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
-			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
-			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 		<Configuration
 			Name="Release|Win32"
 			OutputDirectory="..\Lib"
 			IntermediateDirectory="Release"
 			ConfigurationType="4"
-			CharacterSet="2">
+			InheritedPropertySheets="$(VCInstallDir)VCProjectDefaults\UpgradeFromVC71.vsprops"
+			CharacterSet="2"
+			>
+			<Tool
+				Name="VCPreBuildEventTool"
+			/>
+			<Tool
+				Name="VCCustomBuildTool"
+			/>
+			<Tool
+				Name="VCXMLDataGeneratorTool"
+			/>
+			<Tool
+				Name="VCWebServiceProxyGeneratorTool"
+			/>
+			<Tool
+				Name="VCMIDLTool"
+			/>
 			<Tool
 				Name="VCCLCompilerTool"
 				Optimization="2"
 				AdditionalIncludeDirectories="Include;../Include"
 				PreprocessorDefinitions="WIN32;NDEBUG;_CONSOLE"
-				RuntimeLibrary="4"
+				RuntimeLibrary="0"
 				UsePrecompiledHeader="0"
 				WarningLevel="3"
-				Detect64BitPortabilityProblems="TRUE"
-				DebugInformationFormat="3"/>
+				Detect64BitPortabilityProblems="true"
+				DebugInformationFormat="3"
+			/>
 			<Tool
-				Name="VCCustomBuildTool"/>
+				Name="VCManagedResourceCompilerTool"
+			/>
 			<Tool
-				Name="VCLibrarianTool"/>
+				Name="VCResourceCompilerTool"
+			/>
 			<Tool
-				Name="VCMIDLTool"/>
+				Name="VCPreLinkEventTool"
+			/>
 			<Tool
-				Name="VCPostBuildEventTool"/>
+				Name="VCLibrarianTool"
+			/>
 			<Tool
-				Name="VCPreBuildEventTool"/>
+				Name="VCALinkTool"
+			/>
 			<Tool
-				Name="VCPreLinkEventTool"/>
+				Name="VCXDCMakeTool"
+			/>
 			<Tool
-				Name="VCResourceCompilerTool"/>
+				Name="VCBscMakeTool"
+			/>
 			<Tool
-				Name="VCWebServiceProxyGeneratorTool"/>
+				Name="VCFxCopTool"
+			/>
 			<Tool
-				Name="VCXMLDataGeneratorTool"/>
-			<Tool
-				Name="VCManagedWrapperGeneratorTool"/>
-			<Tool
-				Name="VCAuxiliaryManagedWrapperGeneratorTool"/>
+				Name="VCPostBuildEventTool"
+			/>
 		</Configuration>
 	</Configurations>
 	<References>
@@ -98,111 +149,145 @@
 		<Filter
 			Name="Source Files"
 			Filter="cpp;c;cxx;def;odl;idl;hpj;bat;asm;asmx"
-			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}">
+			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
+			>
 			<File
-				RelativePath=".\Source\klu.c">
+				RelativePath=".\Source\klu.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_analyze.c">
+				RelativePath=".\Source\klu_analyze.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_analyze_given.c">
+				RelativePath=".\Source\klu_analyze_given.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_defaults.c">
+				RelativePath=".\Source\klu_defaults.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_diagnostics.c">
+				RelativePath=".\Source\klu_diagnostics.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_dump.c">
+				RelativePath=".\Source\klu_dump.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_extract.c">
+				RelativePath=".\Source\klu_extract.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_factor.c">
+				RelativePath=".\Source\klu_factor.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_free_numeric.c">
+				RelativePath=".\Source\klu_free_numeric.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_free_symbolic.c">
+				RelativePath=".\Source\klu_free_symbolic.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_kernel.c">
+				RelativePath=".\Source\klu_kernel.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_memory.c">
+				RelativePath=".\Source\klu_memory.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_refactor.c">
+				RelativePath=".\Source\klu_refactor.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_scale.c">
+				RelativePath=".\Source\klu_scale.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_solve.c">
+				RelativePath=".\Source\klu_solve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_sort.c">
+				RelativePath=".\Source\klu_sort.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_tsolve.c">
+				RelativePath=".\Source\klu_tsolve.c"
+				>
 			</File>
 			<File
-				RelativePath=".\Source\klu_z_stuff.c">
+				RelativePath=".\Source\klu_z_stuff.c"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Header Files"
 			Filter="h;hpp;hxx;hm;inl;inc;xsd"
-			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}">
+			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
+			>
 			<File
-				RelativePath="..\Include\amd.h">
+				RelativePath="..\Include\amd.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\btf.h">
+				RelativePath="..\Include\btf.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\colamd.h">
+				RelativePath="..\Include\colamd.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\cs.h">
+				RelativePath="..\Include\cs.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\csz.h">
+				RelativePath="..\Include\csz.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\klu.h">
+				RelativePath="..\Include\klu.h"
+				>
 			</File>
 			<File
-				RelativePath=".\Include\klu_internal.h">
+				RelativePath=".\Include\klu_internal.h"
+				>
 			</File>
 			<File
-				RelativePath=".\Include\klu_version.h">
+				RelativePath=".\Include\klu_version.h"
+				>
 			</File>
 			<File
-				RelativePath="..\Include\UFconfig.h">
+				RelativePath="..\Include\UFconfig.h"
+				>
 			</File>
 		</Filter>
 		<Filter
 			Name="Doc"
-			Filter="">
+			>
 			<File
-				RelativePath=".\Doc\ChangeLog">
+				RelativePath=".\Doc\ChangeLog"
+				>
 			</File>
 			<File
-				RelativePath=".\Doc\KLU_UserGuide.pdf">
+				RelativePath=".\Doc\KLU_UserGuide.pdf"
+				>
 			</File>
 			<File
-				RelativePath=".\Doc\lesser.txt">
+				RelativePath=".\Doc\lesser.txt"
+				>
 			</File>
 			<File
-				RelativePath=".\Doc\palamadai_e.pdf">
+				RelativePath=".\Doc\palamadai_e.pdf"
+				>
 			</File>
 			<File
-				RelativePath=".\README.txt">
+				RelativePath=".\README.txt"
+				>
 			</File>
 		</Filter>
 	</Files>

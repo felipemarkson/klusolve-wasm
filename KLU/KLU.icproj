@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="KLU"
+	ProjectGUID="{6741105E-B9F3-42CE-8242-5ECAD7C940B1}"
+	VCNestedProjectGUID="{81B5B36B-FB38-4042-A266-289E06496D36}"
+	VCNestedProjectFileName="KLU.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

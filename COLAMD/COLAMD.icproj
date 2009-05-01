@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="COLAMD"
+	ProjectGUID="{8E50707F-3BD3-4FBA-9DCB-49E3DC233F9D}"
+	VCNestedProjectGUID="{9C4D2313-187C-4275-AE28-3E72F6010373}"
+	VCNestedProjectFileName="COLAMD.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="Windows-1252"?>
+<VisualStudioProject
+	ProjectType="Intel C++ Project"
+	Version="11.0"
+	Name="CZSparse"
+	ProjectGUID="{407A7E15-F24E-4F5E-82B3-A19ABBC30B66}"
+	VCNestedProjectGUID="{BEA55920-15D8-4DFA-AF16-B20385466848}"
+	VCNestedProjectFileName="CZSparse.vcproj">
+	<Configurations/>
+	<Files/>
+</VisualStudioProject>
