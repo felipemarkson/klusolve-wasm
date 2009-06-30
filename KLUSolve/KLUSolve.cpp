@@ -90,7 +90,7 @@ KLU_API ZeroSparseSet (unsigned int hSparse)
 
 	write_lfp ("ZeroSparseSet\n");
 
-	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (rc);
+	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {
 		pSys->zero();
 		pSys->bFactored = false;
