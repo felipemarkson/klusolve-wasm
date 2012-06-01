@@ -5,7 +5,7 @@
 #include <string.h>
 #include "klu.h"
 
-#ifdef WIN32
+// #ifdef WIN32
 
 #include <windows.h>
 
@@ -79,8 +79,8 @@ double Time (void)
 	return ((double) (kernel + user) / 10000000);
 }
 
-/* end of WIN32 stuff */
-#endif
+/* end of WINDOWS stuff */
+// #endif
 
 /* choose the UF simple demo, or to read Kundert's matrices */
 /* #define READ_KUNDERT - do this as a compiler -D option */
