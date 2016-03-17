@@ -1,18 +1,25 @@
-default: library
+LIB=../.lib/btf.a
 
-include ../UFconfig/UFconfig.mk
+SRC = \
+ Source/btf_maxtrans.c \
+ Source/btf_order.c \
+ Source/btf_strongcomp.c
 
-library:
-	( cd Lib ; $(MAKE) )
+OBJ=$(SRC:.c=.o)
 
+CC=gcc
+CFLAGS=-Wall -O3 -static -Iinclude -I../include
+RM=rm
+
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
+
+.PHONY : all
+all : $(LIB)
+
+$(LIB): $(OBJ)
+	ar rcs $@ $^
+
+.PHONY : clean
 clean:
-	( cd Lib ; $(MAKE) clean )
-
-distclean:
-	( cd Lib ; $(MAKE) distclean )
-	( cd MATLAB ; $(MAKE) distclean )
-
-mex:
-	( cd MATLAB ; $(MAKE) )
-
-purge: distclean
+	-$(RM) $(OBJ) core

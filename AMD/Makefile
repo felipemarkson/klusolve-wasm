@@ -1,67 +1,35 @@
-#------------------------------------------------------------------------------
-# AMD Makefile (for GNU Make or original make)
-#------------------------------------------------------------------------------
+LIB=../.lib/amd.a
 
-default: demo
+SRC = \
+ Source/amd_1.c \
+ Source/amd_2.c \
+ Source/amd_aat.c \
+ Source/amd_control.c \
+ Source/amd_defaults.c \
+ Source/amd_dump.c \
+ Source/amd_global.c \
+ Source/amd_info.c \
+ Source/amd_order.c \
+ Source/amd_post_tree.c \
+ Source/amd_postorder.c \
+ Source/amd_preprocess.c \
+ Source/amd_valid.c
 
-include ../UFconfig/UFconfig.mk
+OBJ=$(SRC:.c=.o)
 
-# Compile all C code, including the C-callable routines.
-# Do not compile the FORTRAN versions, or MATLAB interface.
-demo:
-	( cd Lib    ; $(MAKE) )
-	( cd Demo   ; $(MAKE) )
+CC=gcc
+CFLAGS=-Wall -O3 -static -Iinclude -I../include
+RM=rm
 
-# Compile all C code, including the C-callable routine and the mexFunctions.
-# Do not compile the FORTRAN versions.
-all:
-	( cd Lib    ; $(MAKE) )
-	( cd Demo   ; $(MAKE) )
-	( cd MATLAB ; $(MAKE) )
+%.o : %.c
+	$(CC) $(CFLAGS) -o $@ -c $<
 
-# compile just the C-callable libraries (not mexFunctions or Demos)
-library:
-	( cd Lib    ; $(MAKE) )
+.PHONY : all
+all : $(LIB)
 
-# compile the FORTRAN libraries and demo programs (not compiled by "make all")
-fortran:
-	( cd Lib    ; $(MAKE) fortran )
-	( cd Demo   ; $(MAKE) fortran )
+$(LIB): $(OBJ)
+	ar rcs $@ $^
 
-# compile a FORTRAN demo program that calls the C version of AMD
-# (not compiled by "make all")
-cross:
-	( cd Demo   ; $(MAKE) cross )
-
-# remove object files, but keep the compiled programs and library archives
+.PHONY : clean
 clean:
-	( cd Lib    ; $(MAKE) clean )
-	( cd Demo   ; $(MAKE) clean )
-	( cd MATLAB ; $(MAKE) clean )
-	( cd Doc    ; $(MAKE) clean )
-
-# clean, and then remove compiled programs and library archives
-purge:
-	( cd Lib    ; $(MAKE) purge )
-	( cd Demo   ; $(MAKE) purge )
-	( cd MATLAB ; $(MAKE) purge )
-	( cd Doc    ; $(MAKE) purge )
-
-distclean: purge
-
-# create PDF documents for the original distribution
-doc:
-	( cd Doc    ; $(MAKE) )
-
-# get ready for distribution
-dist: purge
-	( cd Demo   ; $(MAKE) dist )
-	( cd Doc    ; $(MAKE) )
-
-ccode: library
-
-lib: library
-
-# compile the MATLAB mexFunction
-mex:
-	( cd MATLAB ; $(MAKE) )
+	-$(RM) $(OBJ) core

@@ -14,6 +14,7 @@ typedef struct _complex {double x, y;} complex;
 #ifndef KLU_API
 // import definitions
 #define KLU_API __declspec(dllimport) unsigned int __stdcall
+#define PTR_API __declspec(dllimport) ULONG_PTR __stdcall
 #endif
 
 #ifdef __cplusplus
@@ -22,13 +23,13 @@ extern "C" {
 
 // return handle of new sparse set, 0 if error
 // be sure to DeleteSparseSet using the returned handle
-KLU_API NewSparseSet (unsigned int nBus);
+PTR_API NewSparseSet (unsigned int nBus);
 
 // return 1 if successful, 0 if not
-KLU_API ZeroSparseSet (unsigned int hSparse);
+KLU_API ZeroSparseSet (ULONG_PTR hSparse);
 
 // return 1 if successful, 2 if singular, 0 if other error
-KLU_API FactorSparseMatrix (unsigned int hSparse);
+KLU_API FactorSparseMatrix (ULONG_PTR hSparse);
 
 /* 
   input: current injections in zero-based _acxB
@@ -36,33 +37,33 @@ KLU_API FactorSparseMatrix (unsigned int hSparse);
   no provision for voltage sources
 */
 // return 1 if successful, 2 if singular, 0 if other error
-KLU_API SolveSparseSet (unsigned int hSparse, complex *_acxX, complex *_acxB);
+KLU_API SolveSparseSet (ULONG_PTR hSparse, complex *_acxX, complex *_acxB);
 
 // return 1 if successful, 0 if not
-KLU_API DeleteSparseSet (unsigned int hSparse);
+KLU_API DeleteSparseSet (ULONG_PTR hSparse);
 
 /* i and j are 1-based for these */
 // return 1 if successful, 0 if not
-KLU_API AddMatrixElement (unsigned int hSparse, unsigned int i, unsigned int j, complex *pcxVal);
-KLU_API GetMatrixElement (unsigned int hSparse, unsigned int i, unsigned int j, complex *pcxVal);
+KLU_API AddMatrixElement (ULONG_PTR hSparse, unsigned int i, unsigned int j, complex *pcxVal);
+KLU_API GetMatrixElement (ULONG_PTR hSparse, unsigned int i, unsigned int j, complex *pcxVal);
 
 // new functions
-KLU_API GetSize (unsigned int hSparse, unsigned int *pResult);
-KLU_API GetNNZ (unsigned int hSparse, unsigned int *pResult);
-KLU_API GetSparseNNZ (unsigned int hSparse, unsigned int *pResult);
-KLU_API GetRCond (unsigned int hSparse, double *pResult);
-KLU_API GetRGrowth (unsigned int hSparse, double *pResult);
-KLU_API GetCondEst (unsigned int hSparse, double *pResult);
-KLU_API GetSingularCol (unsigned int hSparse, unsigned int *pResult);
+KLU_API GetSize (ULONG_PTR hSparse, unsigned int *pResult);
+KLU_API GetNNZ (ULONG_PTR hSparse, unsigned int *pResult);
+KLU_API GetSparseNNZ (ULONG_PTR hSparse, unsigned int *pResult);
+KLU_API GetRCond (ULONG_PTR hSparse, double *pResult);
+KLU_API GetRGrowth (ULONG_PTR hSparse, double *pResult);
+KLU_API GetCondEst (ULONG_PTR hSparse, double *pResult);
+KLU_API GetSingularCol (ULONG_PTR hSparse, unsigned int *pResult);
 
-KLU_API AddPrimitiveMatrix (unsigned int hSparse, unsigned int nOrder,
+KLU_API AddPrimitiveMatrix (ULONG_PTR hSparse, unsigned int nOrder,
 							unsigned int *pNodes, complex *pcY);
-KLU_API GetCompressedMatrix (unsigned int hSparse, unsigned int nColP, 
+KLU_API GetCompressedMatrix (ULONG_PTR hSparse, unsigned int nColP, 
 							 unsigned int nNZ, unsigned int *pColP, 
 							 unsigned int *pRowIdx, complex *pcY);
-KLU_API GetTripletMatrix (unsigned int hSparse, unsigned int nNZ,
+KLU_API GetTripletMatrix (ULONG_PTR hSparse, unsigned int nNZ,
 						  unsigned int *pRows, unsigned int *pCols, complex *pcY);
-KLU_API FindIslands (unsigned int hSparse, unsigned int nOrder, unsigned int *pNodes);
+KLU_API FindIslands (ULONG_PTR hSparse, unsigned int nOrder, unsigned int *pNodes);
 
 // iAction = 0 to close, 1 to rewrite, 2 to append
 KLU_API SetLogFile (char *path, unsigned int iAction);

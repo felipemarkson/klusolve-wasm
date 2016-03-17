@@ -7,6 +7,7 @@
 
 // #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
 #define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
+#define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall
 // #define KLU_API extern "C" __declspec(dllexport)
 #include "klusolve.h"
 #include "klusystem.h"

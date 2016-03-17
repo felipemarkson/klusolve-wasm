@@ -10,6 +10,7 @@
 
 // #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
 #define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
+#define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall
 #include "klusolve.h"
 #include "klusystem.h"
 
@@ -17,7 +18,7 @@
 
 static FILE *lfp = NULL;
 
-static void write_lfp (char *fmt, ...)
+static void write_lfp (const char *fmt, ...)
 {
 	va_list args;
 	va_start (args, fmt);
@@ -70,21 +71,21 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 
 // exported function definitions
 
-KLU_API NewSparseSet (unsigned int nBus)
+PTR_API NewSparseSet (unsigned int nBus)
 {
-    unsigned int rc = 0;
+    ULONG_PTR rc = 0;
 
 	write_lfp ("NewSparseSet %u\n", nBus);
 
     KLUSystem *pSys = new KLUSystem ();
     if (pSys) {
         pSys->Initialize(nBus, 0, nBus);
-        rc = reinterpret_cast<unsigned int> (pSys);
+        rc = reinterpret_cast<ULONG_PTR> (pSys);
     }
 	return rc;
 }
 
-KLU_API ZeroSparseSet (unsigned int hSparse)
+KLU_API ZeroSparseSet (ULONG_PTR hSparse)
 {
     unsigned long rc = 0;
 
@@ -99,7 +100,7 @@ KLU_API ZeroSparseSet (unsigned int hSparse)
 	return rc;
 }
 
-KLU_API FactorSparseMatrix (unsigned int hSparse)
+KLU_API FactorSparseMatrix (ULONG_PTR hSparse)
 {
     unsigned int rc = 0;
 
@@ -121,7 +122,7 @@ KLU_API FactorSparseMatrix (unsigned int hSparse)
   output: node voltages in zero-based _acxX
   no provision for voltage sources
 */
-KLU_API SolveSparseSet(unsigned int hSparse, complex *_acxX, complex *_acxB)
+KLU_API SolveSparseSet(ULONG_PTR hSparse, complex *_acxX, complex *_acxB)
 {
     unsigned int rc = 0;
 
@@ -142,7 +143,7 @@ KLU_API SolveSparseSet(unsigned int hSparse, complex *_acxX, complex *_acxB)
 	return rc;
 }
 
-KLU_API DeleteSparseSet(unsigned int hSparse)
+KLU_API DeleteSparseSet(ULONG_PTR hSparse)
 {
     unsigned int rc = 0;
 
@@ -158,7 +159,7 @@ KLU_API DeleteSparseSet(unsigned int hSparse)
 }
 
 /* i and j are 1-based for these */
-KLU_API AddMatrixElement(unsigned int hSparse, unsigned int i, unsigned int j, complex *pcxVal)
+KLU_API AddMatrixElement(ULONG_PTR hSparse, unsigned int i, unsigned int j, complex *pcxVal)
 {
     unsigned int rc = 0;
 
@@ -176,7 +177,7 @@ KLU_API AddMatrixElement(unsigned int hSparse, unsigned int i, unsigned int j, c
 	return rc;
 }
 
-KLU_API GetMatrixElement(unsigned int hSparse, unsigned int i, unsigned int j, complex *pcxVal)
+KLU_API GetMatrixElement(ULONG_PTR hSparse, unsigned int i, unsigned int j, complex *pcxVal)
 {
     unsigned int rc = 0;
 
@@ -189,7 +190,7 @@ KLU_API GetMatrixElement(unsigned int hSparse, unsigned int i, unsigned int j, c
 }
 
 // new functions
-KLU_API GetSize (unsigned int hSparse, unsigned int *pResult)
+KLU_API GetSize (ULONG_PTR hSparse, unsigned int *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0;
@@ -201,7 +202,7 @@ KLU_API GetSize (unsigned int hSparse, unsigned int *pResult)
 	return rc;
 }
 
-KLU_API GetNNZ (unsigned int hSparse, unsigned int *pResult)
+KLU_API GetNNZ (ULONG_PTR hSparse, unsigned int *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0;
@@ -213,7 +214,7 @@ KLU_API GetNNZ (unsigned int hSparse, unsigned int *pResult)
 	return rc;
 }
 
-KLU_API GetSparseNNZ (unsigned int hSparse, unsigned int *pResult)
+KLU_API GetSparseNNZ (ULONG_PTR hSparse, unsigned int *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0;
@@ -225,7 +226,7 @@ KLU_API GetSparseNNZ (unsigned int hSparse, unsigned int *pResult)
 	return rc;
 }
 
-KLU_API GetRCond (unsigned int hSparse, double *pResult)
+KLU_API GetRCond (ULONG_PTR hSparse, double *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0.0;
@@ -237,7 +238,7 @@ KLU_API GetRCond (unsigned int hSparse, double *pResult)
 	return rc;
 }
 
-KLU_API GetRGrowth (unsigned int hSparse, double *pResult)
+KLU_API GetRGrowth (ULONG_PTR hSparse, double *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0.0;
@@ -249,7 +250,7 @@ KLU_API GetRGrowth (unsigned int hSparse, double *pResult)
 	return rc;
 }
 
-KLU_API GetCondEst (unsigned int hSparse, double *pResult)
+KLU_API GetCondEst (ULONG_PTR hSparse, double *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0.0;
@@ -261,7 +262,7 @@ KLU_API GetCondEst (unsigned int hSparse, double *pResult)
 	return rc;
 }
 
-KLU_API GetFlops (unsigned int hSparse, double *pResult)
+KLU_API GetFlops (ULONG_PTR hSparse, double *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0.0;
@@ -273,7 +274,7 @@ KLU_API GetFlops (unsigned int hSparse, double *pResult)
 	return rc;
 }
 
-KLU_API GetSingularCol (unsigned int hSparse, unsigned int *pResult)
+KLU_API GetSingularCol (ULONG_PTR hSparse, unsigned int *pResult)
 {
     unsigned int rc = 0;
 	*pResult = 0;
@@ -285,7 +286,7 @@ KLU_API GetSingularCol (unsigned int hSparse, unsigned int *pResult)
 	return rc;
 }
 
-KLU_API AddPrimitiveMatrix (unsigned int hSparse, unsigned int nOrder,
+KLU_API AddPrimitiveMatrix (ULONG_PTR hSparse, unsigned int nOrder,
 							unsigned int *pNodes, complex *pcY)
 {
     unsigned int rc = 0;
@@ -310,7 +311,7 @@ KLU_API AddPrimitiveMatrix (unsigned int hSparse, unsigned int nOrder,
 	return rc;
 }
 
-KLU_API GetCompressedMatrix (unsigned int hSparse, unsigned int nColP, unsigned int nNZ,
+KLU_API GetCompressedMatrix (ULONG_PTR hSparse, unsigned int nColP, unsigned int nNZ,
 				   unsigned int *pColP, unsigned int *pRowIdx, complex *pcY)
 {
     unsigned int rc = 0;
@@ -325,7 +326,7 @@ KLU_API GetCompressedMatrix (unsigned int hSparse, unsigned int nColP, unsigned 
 	return rc;
 }
 
-KLU_API GetTripletMatrix (unsigned int hSparse, unsigned int nNZ,
+KLU_API GetTripletMatrix (ULONG_PTR hSparse, unsigned int nNZ,
 						  unsigned int *pRows, unsigned int *pCols, complex *pcY)
 {
     unsigned int rc = 0;
@@ -340,7 +341,7 @@ KLU_API GetTripletMatrix (unsigned int hSparse, unsigned int nNZ,
 	return rc;
 }
 
-KLU_API FindIslands (unsigned int hSparse, unsigned int nOrder, unsigned int *pNodes)
+KLU_API FindIslands (ULONG_PTR hSparse, unsigned int nOrder, unsigned int *pNodes)
 {
     unsigned int rc = 0;
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
