@@ -12,9 +12,16 @@ typedef struct _complex {double x, y;} complex;
 #endif
 
 #ifndef KLU_API
+#ifdef _WINDOWS
 // import definitions
 #define KLU_API __declspec(dllimport) unsigned int __stdcall
 #define PTR_API __declspec(dllimport) ULONG_PTR __stdcall
+#else
+#define KLU_API unsigned int
+#define PTR_API ULONG_PTR
+#define ULONG_PTR unsigned long long
+#define TRUE 1
+#endif
 #endif
 
 #ifdef __cplusplus
