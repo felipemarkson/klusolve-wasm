@@ -1,4 +1,4 @@
-LIB=../.lib/csparse.a
+LIB=../.lib/libcsparse.a
 
 SRC = \
  Source/cs_add.c \
@@ -55,9 +55,14 @@ SRC = \
 
 OBJ=$(SRC:.c=.o)
 
-CC=gcc
-CFLAGS=-Wall -O3 -static -Iinclude -I../include
+ifndef windir
 RM=rm
+else
+RM=del
+endif
+
+CC=gcc
+CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -70,4 +75,4 @@ $(LIB): $(OBJ)
 
 .PHONY : clean
 clean:
-	-$(RM) $(OBJ) core
+	-$(RM) $(OBJ)
