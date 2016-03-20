@@ -539,7 +539,7 @@ static void prune
     Int p, i, j, p2, phead, ptail, llen, ulen ;
 
     /* check to see if any column of L can be pruned */
-    GET_POINTER (LU, Uip, Ulen, Ui, Ux, k, ulen) ;
+    GET_POINTER (LU, Uip, Ulen, Ui, Ux, k, ulen); (void) Ux; /* unused */
     for (p = 0 ; p < ulen ; p++)
     {
 	j = Ui [p] ;
@@ -670,12 +670,16 @@ size_t KLU_kernel   /* final size of LU on output */
     KLU_common *Common
 )
 {
-    Entry pivot ;
+#ifndef COMPLEX
+    Entry pivot = 0;
+#else
+    Entry pivot = {{0,0}};
+#endif
     double abs_pivot, xsize, nunits, tol, memgrow ;
     Entry *Ux ;
     Int *Li, *Ui ;
     Unit *LU ;		/* LU factors (pattern and values) */
-    Int k, p, i, j, pivrow, kbar, diagrow, firstrow, lup, top, scale, len ;
+    Int k, p, i, j, pivrow = 0, kbar, diagrow, firstrow, lup, top, scale, len ;
     size_t newlusize ;
 
 #ifndef NDEBUG

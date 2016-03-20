@@ -123,7 +123,7 @@ Int KLU_rgrowth		/* return TRUE if successful, FALSE otherwise */
 		}
 	    }
 
-	    GET_POINTER (LU, Uip, Ulen, Ui, Ux, j, len) ;
+	    GET_POINTER (LU, Uip, Ulen, Ui, Ux, j, len); (void) Ui; /* unused */
 	    for (k = 0 ; k < len ; k++)
 	    {
 	        /* temp = ABS (Ux [k]) */
@@ -181,8 +181,8 @@ Int KLU_condest		/* return TRUE if successful, FALSE otherwise */
 {
     double xj, Xmax, csum, anorm, ainv_norm, est_old, est_new, abs_value ;
     Entry *Udiag, *Aentry, *X, *S ;
-    Int *R ;
-    Int nblocks, i, j, jmax, jnew, pend, n ;
+/*    Int *R ; */
+    Int i, j, jmax, jnew, pend, n ;
 #ifndef COMPLEX
     Int unchanged ;
 #endif
@@ -215,8 +215,6 @@ Int KLU_condest		/* return TRUE if successful, FALSE otherwise */
     /* ---------------------------------------------------------------------- */
 
     n = Symbolic->n ;
-    nblocks = Symbolic->nblocks ;
-    R = Symbolic->R ;
     Udiag = Numeric->Udiag ;
 
     /* ---------------------------------------------------------------------- */
@@ -425,7 +423,7 @@ Int KLU_flops		/* return TRUE if successful, FALSE otherwise */
     Int *R, *Ui, *Uip, *Llen, *Ulen ;
     Unit **LUbx ;
     Unit *LU ;
-    Int k, ulen, p, n, nk, block, nblocks, k1 ;
+    Int k, ulen, p, nk, block, nblocks, k1 ;
 
     /* ---------------------------------------------------------------------- */
     /* check inputs */
@@ -447,7 +445,6 @@ Int KLU_flops		/* return TRUE if successful, FALSE otherwise */
     /* get the contents of the Symbolic object */
     /* ---------------------------------------------------------------------- */
 
-    n = Symbolic->n ;
     R = Symbolic->R ;
     nblocks = Symbolic->nblocks ;
 
@@ -506,7 +503,7 @@ Int KLU_rcond		/* return TRUE if successful, FALSE otherwise */
     KLU_common *Common		/* result in Common->rcond */
 )
 {
-    double ukk, umin, umax ;
+    double ukk, umin = 0, umax = 1;
     Entry *Udiag ;
     Int j, n ;
 

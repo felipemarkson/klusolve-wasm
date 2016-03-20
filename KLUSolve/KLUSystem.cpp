@@ -329,19 +329,6 @@ unsigned KLUSystem::FindDisconnectedSubnetwork()
 	return m_fltBus;
 }
 
-static void augment_column (int *Ai, cs *y, unsigned j, int offset, unsigned *p, int *count)
-{
-	int *yp = y->p;
-	int *yi = y->i;
-	int k;
-
-	for (k = yp[j]; k < yp[j+1]; k++) {
-		Ai[*p] = yi[k] + offset;
-		*count += 1;
-		*p += 1;
-	}
-}
-
 // stack-based DFS from Sedgewick
 static int *stack = NULL;
 static int stk_p = 0;
@@ -474,7 +461,7 @@ void KLUSystem::GetElement (unsigned iRow, unsigned iCol, complex &cpxVal)
 		Ap = T22->p;
 		Ai = T22->i;
 		for (i = 0; i < T22->nz; i++) {
-			if (Ap[i] == iCol && Ai[i] == iRow) {
+			if (Ap[i] == (int) iCol && Ai[i] == (int) iRow) {
 				cpxVal.x += Ax[2*i];
 				cpxVal.y += Ax[2*i + 1];
 			}
@@ -484,7 +471,7 @@ void KLUSystem::GetElement (unsigned iRow, unsigned iCol, complex &cpxVal)
 		Ap = Y22->p;
 		Ai = Y22->i;
 		for (p = Ap[iCol]; p < Ap[iCol+1]; ++p) {
-			if (Ai[p] == iRow) {
+			if (Ai[p] == (int) iRow) {
 				cpxVal.x = Ax[2*p];
 				cpxVal.y = Ax[2*p + 1];
 				return;
