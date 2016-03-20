@@ -1,4 +1,4 @@
-LIB=../.lib/amd.a
+LIB=../.lib/libamd.a
 
 SRC = \
  Source/amd_1.c \
@@ -17,9 +17,14 @@ SRC = \
 
 OBJ=$(SRC:.c=.o)
 
-CC=gcc
-CFLAGS=-Wall -O3 -static -Iinclude -I../include
+ifndef windir
 RM=rm
+else
+RM=del
+endif
+
+CC=gcc
+CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -32,4 +37,4 @@ $(LIB): $(OBJ)
 
 .PHONY : clean
 clean:
-	-$(RM) $(OBJ) core
+	-$(RM) $(OBJ)
