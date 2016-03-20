@@ -156,7 +156,7 @@ static Int analyze_worker	/* returns KLU_OK or < 0 if error */
 
 	    /* account for memory usage in AMD */
 	    Common->mempeak = MAX (Common->mempeak,
-		Common->memusage + amd_Info [AMD_MEMORY]) ;
+		Common->memusage + (size_t) amd_Info [AMD_MEMORY]) ;
 
 	    /* get the ordering statistics from AMD */
 	    lnz1 = (Int) (amd_Info [AMD_LNZ]) + nk ;
@@ -291,7 +291,7 @@ static KLU_symbolic *order_and_analyze	/* returns NULL if error, or a valid
     if (ordering == 1)
     {
 	/* COLAMD */
-	Cilen = COLAMD_recommended (nz, n, n) ;
+	Cilen = (int) COLAMD_recommended (nz, n, n) ;
     }
     else if (ordering == 0 || (ordering == 3 && Common->user_order != NULL))
     {

@@ -82,7 +82,7 @@ double Time (void)
 /* end of WINDOWS stuff */
 #else
 #	define stricmp strcasecmp
-#	define strnicmp strncasecmp
+#	define _strnicmp strncasecmp
 #include <time.h>
 double Time (void)
 {
@@ -417,8 +417,8 @@ int get_kundert_header (FILE *fp, int *isreal, int *ndim)
     }
 
 	/* For compatibility with the old file syntax. */
-    if (!strnicmp( msg, "Starting", 8)) {
-		if (strnicmp( msg, "Starting complex", 15 ) == 0) {
+    if (!_strnicmp( msg, "Starting", 8)) {
+		if (_strnicmp( msg, "Starting complex", 15 ) == 0) {
 			*isreal = 0;
 		} else {
 			*isreal = 1;
@@ -439,9 +439,9 @@ int get_kundert_header (FILE *fp, int *isreal, int *ndim)
         return 0;
     }
     if (nTok == 2) {  /* new format has the type in second token */
-		if (strnicmp (tok, "complex", 7 ) == 0) {
+		if (_strnicmp (tok, "complex", 7 ) == 0) {
 			*isreal = 0;
-		} else if (strnicmp (tok, "real", 4) == 0) {
+		} else if (_strnicmp (tok, "real", 4) == 0) {
 			*isreal = 1;
 		} else {   
 			fprintf (stderr, "kundert hdr 5\n");
@@ -516,7 +516,7 @@ int read_kundert_source (FILE *fp, double *rhs, int n, int isreal)
 		fprintf (stdout, "kundert src missing, will use 1st column of A\n");
 		return -1;
 	}
-	if (strnicmp (msg, "Beginning", 9) == 0) { /* old format, read the next one */
+	if (_strnicmp (msg, "Beginning", 9) == 0) { /* old format, read the next one */
 		if (NULL == fgets (msg, BUFSIZ, fp)) {
 			fprintf (stderr, "kundert src missing, will use 1st column of A\n");
 			fprintf (stdout, "kundert src missing, will use 1st column of A\n");

@@ -26,9 +26,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="klusolve.def">
-      <Filter>Source Files</Filter>
-    </None>
     <None Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>

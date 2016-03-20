@@ -1587,13 +1587,13 @@ PUBLIC Int COLAMD_MAIN		/* returns TRUE if successful, FALSE otherwise*/
     {
 	/* not enough space in array A to perform the ordering */
 	stats [COLAMD_STATUS] = COLAMD_ERROR_A_too_small ;
-	stats [COLAMD_INFO1] = need ;
+	stats [COLAMD_INFO1] = (int) need ;
 	stats [COLAMD_INFO2] = Alen ;
 	DEBUG0 (("colamd: Need Alen >= %d, given only Alen = %d\n", need,Alen));
 	return (FALSE) ;
     }
 
-    Alen -= Col_size + Row_size ;
+    Alen -= (int) (Col_size + Row_size);
     Col = (Colamd_Col *) &A [Alen] ;
     Row = (Colamd_Row *) &A [Alen + Col_size] ;
 
