@@ -5,10 +5,15 @@ SRC = \
 
 OBJ=$(SRC:.c=.o)
 
-CC=gcc
-CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../include
-LDFLAGS=-L/klusolve/.lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse
+ifndef windir
 RM=rm
+else
+RM=del
+endif
+
+CC=gcc
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
+LDFLAGS=-L../../.lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
@@ -21,4 +26,4 @@ $(EXE): $(OBJ)
 
 .PHONY : clean
 clean:
-	-$(RM) $(OBJ) core
+	-$(RM) $(OBJ)

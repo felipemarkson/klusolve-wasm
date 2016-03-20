@@ -5,7 +5,7 @@
 #include <string.h>
 #include "klu.h"
 
-// #ifdef WIN32
+#ifdef _WINDOWS
 
 #include <windows.h>
 
@@ -80,7 +80,16 @@ double Time (void)
 }
 
 /* end of WINDOWS stuff */
-// #endif
+#else
+#	define stricmp strcasecmp
+#	define strnicmp strncasecmp
+#include <time.h>
+double Time (void)
+{
+	return ((double) clock() / CLOCKS_PER_SEC);
+}
+
+#endif
 
 /* choose the UF simple demo, or to read Kundert's matrices */
 /* #define READ_KUNDERT - do this as a compiler -D option */
@@ -500,7 +509,6 @@ int read_kundert_source (FILE *fp, double *rhs, int n, int isreal)
 	char msg[BUFSIZ];
 	int i, j, nTok;
 	double re, im;
-	int iMissing = 0;
 
 	/* read the first source line */
 	if (NULL == fgets (msg, BUFSIZ, fp)) {
@@ -691,7 +699,7 @@ int main (int argc, char *argv[])
 	printf ("\nAggregate resource usage:\n");
     printf ("    Time required = %.2f seconds.\n", Time() - BeginTime);
 //    printf ("    Virtual memory used = %ul kBytes.\n", kbEnd - kbStart);
-    printf ("    Peak memory usage: %ul kBytes.\n", Common.mempeak / 1000);
+    printf ("    Peak memory usage: %lu kBytes.\n", (unsigned long) Common.mempeak / 1000);
 
 	return (0) ;
 }
