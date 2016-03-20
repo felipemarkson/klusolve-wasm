@@ -7,8 +7,8 @@
 //
 
 #ifdef _WINDOWS
-#include "stdafx.h"
-
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
+#include <windows.h>
 // #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
 #define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
 #define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall

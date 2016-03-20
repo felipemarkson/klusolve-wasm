@@ -6,7 +6,7 @@
 #include "klu.h"
 
 #ifdef _WINDOWS
-
+#define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <windows.h>
 
 void vminfo (unsigned long *free, unsigned long *reserved, unsigned long *committed) {
