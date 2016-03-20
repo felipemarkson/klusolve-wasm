@@ -7,12 +7,13 @@ OBJ=$(SRC:.c=.o)
 
 ifndef windir
 RM=rm
+CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
 else
 RM=del
+CFLAGS=-Wall -O3 -static -IInclude -I../Include
 endif
 
 CC=gcc
-CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
