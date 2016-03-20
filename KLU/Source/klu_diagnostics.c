@@ -12,6 +12,9 @@
  */
 
 #include "klu_internal.h"
+#ifndef DBL_MAX
+#define DBL_MAX 1.0e308;
+#endif
 
 /* ========================================================================== */
 /* === KLU_rgrowth ========================================================== */
@@ -201,7 +204,7 @@ Int KLU_condest		/* return TRUE if successful, FALSE otherwise */
     if (Numeric == NULL)
     {
 	/* treat this as a singular matrix */
-	Common->condest = 1 / abs_value ;
+	Common->condest = DBL_MAX ;
 	Common->status = KLU_SINGULAR ;
 	return (TRUE) ;
     }
