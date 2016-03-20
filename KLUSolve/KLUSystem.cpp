@@ -3,14 +3,23 @@
 /* Licensed under the GNU Lesser General Public License (LGPL) v 2.1         */
 /* ------------------------------------------------------------------------- */
 
+#ifdef _WINDOWS
 #include "stdafx.h"
 
 // #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
 #define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
 #define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall
-// #define KLU_API extern "C" __declspec(dllexport)
-#include "klusolve.h"
-#include "klusystem.h"
+#else
+#include <string.h>
+#include <stdlib.h>
+#define KLU_API unsigned int
+#define PTR_API ULONG_PTR
+#define ULONG_PTR unsigned long long
+#define TRUE 1
+#endif
+
+#include "KLUSolve.h"
+#include "KLUSystem.h"
 
 complex czero = {0.0, 0.0};
 static klu_common Common;
@@ -313,7 +322,7 @@ double KLUSystem::GetFlops ()
 	return Common.flops;
 }
 
-UINT KLUSystem::FindDisconnectedSubnetwork()
+unsigned KLUSystem::FindDisconnectedSubnetwork()
 {
 	Factor ();
 
@@ -370,7 +379,7 @@ static void mark_dfs (unsigned j, int cnt, int *Ap, int *Ai, int *clique)
 //   performs a new DFS on the compressed non-zero pattern
 // This function could behave differently than before, 
 //   since the compression process removes numerical zero elements
-UINT KLUSystem::FindIslands(UINT *idClique)
+unsigned KLUSystem::FindIslands(unsigned *idClique)
 {
 	Factor ();
 

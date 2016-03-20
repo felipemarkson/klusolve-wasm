@@ -6,13 +6,22 @@
 // KLUSolve.cpp : Defines the entry point for the DLL application.
 //
 
+#ifdef _WINDOWS
 #include "stdafx.h"
 
 // #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
 #define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
 #define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall
-#include "klusolve.h"
-#include "klusystem.h"
+#else
+#include <stdarg.h>
+#define KLU_API unsigned int
+#define PTR_API ULONG_PTR
+#define ULONG_PTR unsigned long long
+#define TRUE 1
+#endif
+
+#include "KLUSolve.h"
+#include "KLUSystem.h"
 
 #define SYMMETRIC_MATRIX
 
@@ -51,6 +60,8 @@ KLU_API SetLogFile (char *path, unsigned int iAction)
 	return rc;
 }
 
+#ifdef _WINDOWS
+
 BOOL APIENTRY DllMain( HANDLE hModule, 
                        DWORD  ul_reason_for_call, 
                        LPVOID lpReserved
@@ -68,6 +79,8 @@ BOOL APIENTRY DllMain( HANDLE hModule,
 	}
     return TRUE;
 }
+
+#endif
 
 // exported function definitions
 

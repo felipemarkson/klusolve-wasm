@@ -80,7 +80,7 @@ public:
 	unsigned int GetSingularCol () {return m_fltBus;}
 
 	// bSum is ignored
-    void AddMatrix (unsigned far *aidBus, matrix_complex *pcxm, int bSum);
+    void AddMatrix (unsigned *aidBus, matrix_complex *pcxm, int bSum);
 	
 	// returns 1 for success, -1 for a singular matrix
 	// returns 0 for another KLU error, most likely the matrix is too large for int32
