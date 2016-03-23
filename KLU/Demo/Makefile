@@ -1,4 +1,4 @@
-EXE=../../.test/KLDemo.exe
+EXE=../../Test/KLDemo.exe
 
 SRC = \
  klu_simple.c
@@ -13,7 +13,7 @@ endif
 
 CC=gcc
 CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
-LDFLAGS=-L../../.lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
+LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

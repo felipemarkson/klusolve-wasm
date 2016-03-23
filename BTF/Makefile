@@ -1,4 +1,4 @@
-LIB=../.lib/libbtf.a
+LIB=../Lib/libbtf.a
 
 SRC = \
  Source/btf_maxtrans.c \

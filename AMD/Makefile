@@ -1,4 +1,4 @@
-LIB=../.lib/libamd.a
+LIB=../Lib/libamd.a
 
 SRC = \
  Source/amd_1.c \

@@ -1,4 +1,4 @@
-LIB=../.lib/libcsparse.a
+LIB=../Lib/libcsparse.a
 
 SRC = \
  Source/cs_add.c \

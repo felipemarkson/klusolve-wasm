@@ -1,4 +1,4 @@
-LIB=../.lib/libcolamd.a
+LIB=../Lib/libcolamd.a
 
 SRC = \
  Source/colamd.c \

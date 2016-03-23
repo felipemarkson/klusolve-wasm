@@ -1,4 +1,4 @@
-LIB=../.lib/libczsparse.a
+LIB=../Lib/libczsparse.a
 
 SRC = \
  Source/csz_stuff.c

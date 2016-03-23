@@ -1,21 +1,32 @@
 FILES=KLUSolve KLUSystem
 OBJ=$(addsuffix .o,$(FILES))
-DLL=../.lib/klusolve.dll
-LIB=../.lib/libklusolve.a
-SO=../.lib/klusolve.so
+DLL=../Lib/klusolve.dll
+LIB=../Lib/libklusolve.a
+SO=../Lib/klusolve.so
 
 ifndef windir
 
 RM=rm
 CC=g++
 CFLAGS=-c -Wall -O3 -fPIC -I../Include
-LDFLAGS=-L../.lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
+LDFLAGS=-L../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
+ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
+ARSCRIPT=script.ar
+ADIR=../Lib
 
 .PHONY : all
-all : $(SO)
+all : $(LIB)
 
 $(SO): $(OBJ)
 	gcc -shared -fPIC $^ $(LDFLAGS) -o $@
+
+$(LIB): $(OBJ)
+	$(SILENT)echo "CREATE $@" > $(ARSCRIPT)
+	$(SILENT)for a in $(ARCHIVES); do (echo "ADDLIB $(ADIR)/$$a" >> $(ARSCRIPT)); done
+	$(SILENT)echo "ADDMOD $(OBJ)" >> $(ARSCRIPT)
+	$(SILENT)echo "SAVE" >> $(ARSCRIPT)
+	$(SILENT)echo "END" >> $(ARSCRIPT)
+	$(SILENT)$(AR) -M < $(ARSCRIPT)
 
 $(OBJ): %.o : %.cpp %.h
 	$(CC) $(CFLAGS) $< -o $@

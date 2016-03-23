@@ -1,4 +1,4 @@
-LIB=../.lib/libklu.a
+LIB=../Lib/libklu.a
 
 SRC = \
  Source/klu.c \
