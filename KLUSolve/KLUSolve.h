@@ -61,6 +61,7 @@ KLU_API GetSparseNNZ (ULONG_PTR hSparse, unsigned int *pResult);
 KLU_API GetRCond (ULONG_PTR hSparse, double *pResult);
 KLU_API GetRGrowth (ULONG_PTR hSparse, double *pResult);
 KLU_API GetCondEst (ULONG_PTR hSparse, double *pResult);
+KLU_API GetFlops (ULONG_PTR hSparse, double *pResult);
 KLU_API GetSingularCol (ULONG_PTR hSparse, unsigned int *pResult);
 
 KLU_API AddPrimitiveMatrix (ULONG_PTR hSparse, unsigned int nOrder,
