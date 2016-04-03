@@ -6,16 +6,9 @@
 #ifdef _WINDOWS
 #define WIN32_LEAN_AND_MEAN		// Exclude rarely-used stuff from Windows headers
 #include <windows.h>
-// #define KLU_API extern "C" __declspec(dllexport) unsigned int __stdcall
-#define KLU_API extern "C" unsigned int __declspec(dllexport) __stdcall
-#define PTR_API extern "C" ULONG_PTR __declspec(dllexport) __stdcall
 #else
 #include <string.h>
 #include <stdlib.h>
-#define KLU_API unsigned int
-#define PTR_API ULONG_PTR
-#define ULONG_PTR unsigned long long
-#define TRUE 1
 #endif
 
 #include "KLUSolve.h"
