@@ -1,6 +1,9 @@
 KLUSolve 1.0, Copyright (c) 2008, EnerNex Corporation
 All rights reserved.
 
+GCC Makefiles, Copyright (c) 2016, Thomas E. McDermott
+All rights reserved.
+
 KLU Version 1.0, May 31, 2007, by Timothy A. Davis and Ekanathan Palamadai.
 Copyright (C) 2004-2007, University of Florida
 
@@ -22,13 +25,7 @@ systems, licensed under LGPL version 2.1 (see files License.txt and
 lgpl_2_1.txt in this directory). For an example of use, see the OpenDSS 
 project at www.sourceforge.net/projects/electricdss
 
-Contact: Tom McDermott, tom at enernex dot com, or
-
-  Tom McDermott
-  EnerNex Corporation
-  90 Clairton Boulevard, Suite A
-  Pittsburgh, PA  15236
-  1-412-653-0407
+Contact: Tom McDermott, tem42 at pitt dot edu
 
 ==========================================================================
 
@@ -37,16 +34,15 @@ by Timothy A. Davis and his students, which are also licensed under LGPL
 version 2.1.  All source files used in KLUSolve are included in the 
 SourceForge SVN repository for KLUSolve
 
-Current versions: http://www.cise.ufl.edu/research/sparse
+Current versions: http://http://faculty.cse.tamu.edu/davis/suitesparse.html
 
-Contact: davis at cise dot ufl dot edu, or 
+Contact: davis at tamu dot edu, or 
 
   Tim Davis, Professor
-  Room E338 CSE Building
-  P.O. Box 116120
-  University of Florida
-  Gainesville, FL 32611-6120
-  1-352-392-1481
+  425E HRBB
+  Texas A&M University
+  College Station, TX 77843-3112
+  1-979-845-4094
 
 Reference Book: "Direct Methods for Sparse Linear Systems," Timothy A. Davis,
 SIAM, Philadelphia, 2006.
