@@ -1,4 +1,4 @@
-LIB=../Lib/libcolamd.a
+LIB=../Lib/libcolamd.so
 
 SRC = \
  Source/colamd.c \
@@ -8,7 +8,7 @@ OBJ=$(SRC:.c=.o)
 
 ifndef windir
 RM=rm
-CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
+CFLAGS=-Wall -O3 -fPIC -arch i386 -arch x86_64 -IInclude -I../Include
 else
 RM=del
 CFLAGS=-Wall -O3 -static -IInclude -I../Include
@@ -20,10 +20,10 @@ CC=gcc
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 .PHONY : all
-all : $(LIB)
+all : $(OBJ)
 
 $(LIB): $(OBJ)
-	ar rcs $@ $^
+	gcc -shared -o $@ $^
 
 .PHONY : clean
 clean:

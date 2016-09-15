@@ -12,8 +12,8 @@ RM=del
 endif
 
 CC=gcc
-CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
-LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -arch i386 -arch x86_64 -I../../Include
+LDFLAGS=-arch i386 -L../../Lib -lklusolve -lm
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

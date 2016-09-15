@@ -2,23 +2,30 @@ FILES=KLUSolve KLUSystem
 OBJ=$(addsuffix .o,$(FILES))
 DLL=../Lib/libklusolve.dll
 LIB=../Lib/libklusolve.a
-SO=../Lib/klusolve.so
+SO=../Lib/libklusolve.dylib
 
 ifndef windir
 
 RM=rm
 CC=g++
-CFLAGS=-c -Wall -O3 -fPIC -I../Include
-LDFLAGS=-L../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
+CFLAGS=-c -Wall -O3 -fPIC -arch i386 -arch x86_64 -I../Include
+LDFLAGS=-L../Lib -lstdc++
 ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
 ARSCRIPT=script.ar
 ADIR=../Lib
 
 .PHONY : all
-all : $(LIB)
+all : $(SO)
 
 $(SO): $(OBJ)
-	gcc -shared -fPIC $^ $(LDFLAGS) -o $@
+	cp ../AMD/Source/*.o Obj
+	cp ../BTF/Source/*.o Obj
+	cp ../COLAMD/Source/*.o Obj
+	cp ../CSparse/Source/*.o Obj
+	cp ../CZSparse/Source/*.o Obj
+	cp ../KLU/Source/*.o Obj
+	sleep 2
+	gcc -dynamiclib -fPIC -arch i386 -arch x86_64 $^ $(wildcard Obj/*.o) $(LDFLAGS) -o $@
 
 $(LIB): $(OBJ)
 	$(SILENT)echo "CREATE $@" > $(ARSCRIPT)
