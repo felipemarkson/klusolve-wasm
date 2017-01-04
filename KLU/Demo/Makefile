@@ -25,6 +25,8 @@ endif
 
 ifeq ($(uname_S),Windows)
 RM=del
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
+LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
 endif
 
 CC=gcc

@@ -33,7 +33,9 @@ ifeq ($(uname_S),Windows)
 RM=del
 CFLAGS=-Wall -O3 -static -IInclude -I../Include
 .PHONY : all
-all : $(OBJ)
+all : $(LIB)
+$(LIB): $(OBJ)
+	ar rcs $@ $^
 endif
 
 CC=gcc
