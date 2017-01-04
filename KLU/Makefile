@@ -1,4 +1,4 @@
-LIB=../Lib/libklu.so
+LIB=../Lib/libklu.a
 
 SRC = \
  Source/klu.c \
@@ -23,23 +23,38 @@ SRC = \
 OBJ=$(SRC:.c=.o)
 
 ifndef windir
+uname_S := $(shell uname -s)
+else
+uname_S := Windows
+endif
+
+ifeq ($(uname_S),Darwin)
 RM=rm
 CFLAGS=-Wall -O3 -fPIC -arch i386 -arch x86_64 -IInclude -I../Include
-else
+.PHONY : all
+all : $(OBJ)
+endif
+
+ifeq ($(uname_S),Linux)
+RM=rm
+CFLAGS=-Wall -O3 -fPIC -static -IInclude -I../Include
+.PHONY : all
+all : $(LIB)
+$(LIB): $(OBJ)
+	ar rcs $@ $^
+endif
+
+ifeq ($(uname_S),Windows)
 RM=del
 CFLAGS=-Wall -O3 -static -IInclude -I../Include
+.PHONY : all
+all : $(OBJ)
 endif
 
 CC=gcc
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<
-
-.PHONY : all
-all : $(OBJ)
-
-$(LIB): $(OBJ)
-	gcc -shared -o $@ $^
 
 .PHONY : clean
 clean:

@@ -6,14 +6,28 @@ SRC = \
 OBJ=$(SRC:.c=.o)
 
 ifndef windir
-RM=rm
+uname_S := $(shell uname -s)
 else
+uname_S := Windows
+endif
+
+ifeq ($(uname_S),Darwin)
+RM=rm
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -arch i386 -arch x86_64 -I../../Include
+LDFLAGS=-arch i386 -L../../Lib -lklusolve -lm
+endif
+
+ifeq ($(uname_S),Linux)
+RM=rm
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
+LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
+endif
+
+ifeq ($(uname_S),Windows)
 RM=del
 endif
 
 CC=gcc
-CFLAGS=-Wall -O3 -DREAD_KUNDERT -arch i386 -arch x86_64 -I../../Include
-LDFLAGS=-arch i386 -L../../Lib -lklusolve -lm
 
 %.o : %.c
 	$(CC) $(CFLAGS) -o $@ -c $<

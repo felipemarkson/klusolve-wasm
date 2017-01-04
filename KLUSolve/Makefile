@@ -5,18 +5,18 @@ LIB=../Lib/libklusolve.a
 SO=../Lib/libklusolve.dylib
 
 ifndef windir
+uname_S := $(shell uname -s)
+else
+uname_S := Windows
+endif
 
+ifeq ($(uname_S),Darwin)
 RM=rm
 CC=g++
 CFLAGS=-c -Wall -O3 -fPIC -arch i386 -arch x86_64 -I../Include
 LDFLAGS=-L../Lib -lstdc++
-ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
-ARSCRIPT=script.ar
-ADIR=../Lib
-
 .PHONY : all
 all : $(SO)
-
 $(SO): $(OBJ)
 	cp ../AMD/Source/*.o Obj
 	cp ../BTF/Source/*.o Obj
@@ -26,7 +26,20 @@ $(SO): $(OBJ)
 	cp ../KLU/Source/*.o Obj
 	sleep 2
 	gcc -dynamiclib -fPIC -arch i386 -arch x86_64 $^ $(wildcard Obj/*.o) $(LDFLAGS) -o $@
+$(OBJ): %.o : %.cpp %.h
+	$(CC) $(CFLAGS) $< -o $@
+endif
 
+ifeq ($(uname_S),Linux)
+RM=rm
+CC=g++
+CFLAGS=-c -Wall -O3 -fPIC -I../Include
+LDFLAGS=-L../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
+ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
+ARSCRIPT=script.ar
+ADIR=../Lib
+.PHONY : all
+all : $(LIB)
 $(LIB): $(OBJ)
 	$(SILENT)echo "CREATE $@" > $(ARSCRIPT)
 	$(SILENT)for a in $(ARCHIVES); do (echo "ADDLIB $(ADIR)/$$a" >> $(ARSCRIPT)); done
@@ -34,12 +47,11 @@ $(LIB): $(OBJ)
 	$(SILENT)echo "SAVE" >> $(ARSCRIPT)
 	$(SILENT)echo "END" >> $(ARSCRIPT)
 	$(SILENT)$(AR) -M < $(ARSCRIPT)
-
 $(OBJ): %.o : %.cpp %.h
 	$(CC) $(CFLAGS) $< -o $@
+endif
 
-else
-
+ifeq ($(uname_S),Windows)
 RM=del
 CC=g++
 CFLAGS=-c -Wall -O3 -DWIN32 -DNDEBUG -D_WINDOWS -D_USRDLL -DKLUSOLVE_EXPORTS -I../Include
@@ -48,13 +60,10 @@ LDFLAGS=-L/klusolve/lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse
 ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
 ARSCRIPT=script.ar
 ADIR=../Lib
-
 .PHONY : all
 all : $(DLL)
-
 $(DLL): $(OBJ)
 	gcc -shared $^ $(LDFLAGS) -o $@ -Wl,--out-implib,$(LIB)
-
 $(LIB): $(OBJ)
 	$(SILENT)echo "CREATE $@" > $(ARSCRIPT)
 	$(SILENT)echo "ADDLIB ../Lib/libklu.a" >> $(ARSCRIPT)
@@ -67,10 +76,8 @@ $(LIB): $(OBJ)
 	$(SILENT)echo "SAVE" >> $(ARSCRIPT)
 	$(SILENT)echo "END" >> $(ARSCRIPT)
 	$(SILENT)$(AR) -M < $(ARSCRIPT)
-
 $(OBJ): %.o : %.cpp %.h
 	$(CC) $(CFLAGS) $< -o $@
-
 endif
 
 .PHONY : clean
