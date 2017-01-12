@@ -24,6 +24,8 @@
 
 #define SYMMETRIC_MATRIX
 
+// we can't have static data in a multithreaded environment
+/*
 static FILE *lfp = NULL;
 
 static void write_lfp (const char *fmt, ...)
@@ -58,6 +60,12 @@ KLU_API SetLogFile (char *path, unsigned int iAction)
 	}
 	return rc;
 }
+*/
+
+KLU_API SetLogFile (char *, unsigned int)
+{
+    return 0;
+}
 
 #ifdef _WINDOWS
 
@@ -87,7 +95,7 @@ PTR_API NewSparseSet (unsigned int nBus)
 {
     ULONG_PTR rc = 0;
 
-	write_lfp ("NewSparseSet %u\n", nBus);
+//	write_lfp ("NewSparseSet %u\n", nBus);
 
     KLUSystem *pSys = new KLUSystem ();
     if (pSys) {
@@ -101,7 +109,7 @@ KLU_API ZeroSparseSet (ULONG_PTR hSparse)
 {
     unsigned long rc = 0;
 
-	write_lfp ("ZeroSparseSet\n");
+//	write_lfp ("ZeroSparseSet\n");
 
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {
@@ -116,7 +124,7 @@ KLU_API FactorSparseMatrix (ULONG_PTR hSparse)
 {
     unsigned int rc = 0;
 
-	write_lfp ("FactorSparseMatrix\n");
+//	write_lfp ("FactorSparseMatrix\n");
 
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {
@@ -150,7 +158,7 @@ KLU_API SolveSparseSet(ULONG_PTR hSparse, complex *_acxX, complex *_acxB)
 			rc = 2;
 		}
 	}
-	write_lfp ("SolveSparseSet returning %u\n", rc);
+//	write_lfp ("SolveSparseSet returning %u\n", rc);
 
 	return rc;
 }
@@ -159,7 +167,7 @@ KLU_API DeleteSparseSet(ULONG_PTR hSparse)
 {
     unsigned int rc = 0;
 
-	write_lfp ("DeleteSparseSet %u\n", hSparse);
+//	write_lfp ("DeleteSparseSet %u\n", hSparse);
 
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {
@@ -175,7 +183,7 @@ KLU_API AddMatrixElement(ULONG_PTR hSparse, unsigned int i, unsigned int j, comp
 {
     unsigned int rc = 0;
 
-	write_lfp ("AddMatrixElement [%u,%u] = %G + j%G\n", i, j, pcxVal->x, pcxVal->y);
+//	write_lfp ("AddMatrixElement [%u,%u] = %G + j%G\n", i, j, pcxVal->x, pcxVal->y);
 
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {
@@ -303,6 +311,7 @@ KLU_API AddPrimitiveMatrix (ULONG_PTR hSparse, unsigned int nOrder,
 {
     unsigned int rc = 0;
 
+/*
 	if (lfp) {
 		write_lfp ("AddPrimitiveMatrix, nOrder = %u\n", nOrder);
 		for (unsigned i = 0; i < nOrder; i++) {
@@ -314,6 +323,7 @@ KLU_API AddPrimitiveMatrix (ULONG_PTR hSparse, unsigned int nOrder,
 			}
 		}
 	}
+*/
 
 	KLUSystem *pSys = reinterpret_cast<KLUSystem *> (hSparse);
 	if (pSys) {

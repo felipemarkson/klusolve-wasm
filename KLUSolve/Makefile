@@ -4,7 +4,7 @@ DLL=../Lib/libklusolve.dll
 LIB=../Lib/libklusolve.a
 SO=../Lib/libklusolve.dylib
 
-ifndef windir
+ifndef WINDIR
 uname_S := $(shell uname -s)
 else
 uname_S := Windows
@@ -52,11 +52,10 @@ $(OBJ): %.o : %.cpp %.h
 endif
 
 ifeq ($(uname_S),Windows)
-RM=del
+RM=rm
 CC=g++
-CFLAGS=-c -Wall -O3 -DWIN32 -DNDEBUG -D_WINDOWS -D_USRDLL -DKLUSOLVE_EXPORTS -I../Include
 CFLAGS=-c -Wall -O3 -DWIN32 -DNDEBUG -D_WINDOWS -DKLUSOLVE_EXPORTS -I../Include
-LDFLAGS=-L/klusolve/lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
+LDFLAGS=-L../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lczsparse -lcsparse -lstdc++
 ARCHIVES=libklu.a libamd.a libbtf.a libcolamd.a libczsparse.a libcsparse.a
 ARSCRIPT=script.ar
 ADIR=../Lib

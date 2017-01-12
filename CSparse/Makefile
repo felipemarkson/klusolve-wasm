@@ -55,7 +55,7 @@ SRC = \
 
 OBJ=$(SRC:.c=.o)
 
-ifndef windir
+ifndef WINDIR
 uname_S := $(shell uname -s)
 else
 uname_S := Windows
@@ -78,7 +78,7 @@ $(LIB): $(OBJ)
 endif
 
 ifeq ($(uname_S),Windows)
-RM=del
+RM=rm
 CFLAGS=-Wall -O3 -static -IInclude -I../Include
 .PHONY : all
 all : $(LIB)

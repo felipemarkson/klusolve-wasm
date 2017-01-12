@@ -1,3 +1,4 @@
+EXE=KLDemo.exe
 EXE=../../Test/KLDemo.exe
 
 SRC = \
@@ -5,7 +6,7 @@ SRC = \
 
 OBJ=$(SRC:.c=.o)
 
-ifndef windir
+ifndef WINDIR
 uname_S := $(shell uname -s)
 else
 uname_S := Windows
@@ -24,7 +25,8 @@ LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
 endif
 
 ifeq ($(uname_S),Windows)
-RM=del
+RM=rm
+CFLAGS=-Wall -O3 -I../../Include
 CFLAGS=-Wall -O3 -DREAD_KUNDERT -I../../Include
 LDFLAGS=-L../../Lib -Bstatic -lklu -lamd -lbtf -lcolamd -lcsparse -lczsparse -lm
 endif

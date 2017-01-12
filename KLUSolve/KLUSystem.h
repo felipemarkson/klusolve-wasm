@@ -41,6 +41,7 @@ private:
 
 	klu_symbolic *Symbolic;
 	klu_numeric *Numeric;
+    klu_common *Common;
 
 	unsigned int m_nBus;    // number of nodes
 	unsigned int m_nX;      // number of unknown voltages, hardwired to m_nBus

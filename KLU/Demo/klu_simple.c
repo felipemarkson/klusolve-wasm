@@ -106,14 +106,29 @@ int main (void)
 {
     klu_symbolic *Symbolic ;
     klu_numeric *Numeric ;
-    klu_common Common ;
     int i ;
+    /*
+    klu_common Common ;
     klu_defaults (&Common) ;
     Symbolic = klu_analyze (n, Ap, Ai, &Common) ;
     Numeric = klu_factor (Ap, Ai, Ax, Symbolic, &Common) ;
     klu_solve (Symbolic, Numeric, 5, 1, b, &Common) ;
     klu_free_symbolic (&Symbolic, &Common) ;
-    klu_free_numeric (&Numeric, &Common) ;
+    klu_free_numeric (&Numeric, &Common) ; 
+    */
+    klu_common *Common = (klu_common *) malloc (sizeof (struct klu_common_struct));
+    printf("size of klu_common_struct = %I64u and status = %d\n", 
+           sizeof (struct klu_common_struct), Common->status);
+    klu_defaults (Common) ;
+    printf("size of klu_common_struct = %I64u and status = %d\n", 
+           sizeof (struct klu_common_struct), Common->status);
+    Symbolic = klu_analyze (n, Ap, Ai, Common) ;
+    Numeric = klu_factor (Ap, Ai, Ax, Symbolic, Common) ;
+    klu_solve (Symbolic, Numeric, 5, 1, b, Common) ;
+    klu_free_symbolic (&Symbolic, Common) ;
+    klu_free_numeric (&Numeric, Common) ;
+    free (Common); 
+
     for (i = 0 ; i < n ; i++) printf ("x [%d] = %g\n", i, b [i]) ;
     return (0) ;
 }

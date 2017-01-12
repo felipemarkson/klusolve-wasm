@@ -11,11 +11,12 @@ all: $(SUBDIRS)
 .PHONY: clean
 clean: 
 ifndef windir
-	find . | grep '\.o'$ | xargs rm
-	find . | grep '\.a'$ | xargs rm
-	find . | grep '\.so'$ | xargs rm
-	find . | grep ‘\.dylib’$ | xargs rm
-	find . | grep ‘\.exe’$ | xargs rm
+	find . | grep '\.o'$ | xargs rm -f
+	find . | grep '\.a'$ | xargs rm -f
+	find . | grep '\.so'$ | xargs rm -f
+	find . | grep '\.dylib'$ | xargs rm -f
+	find . | grep '\.exe'$ | xargs rm -f
+	find . | grep '\.dll'$ | xargs rm -f
 else
 	del /s /q *.o
 	del /s /q *.a

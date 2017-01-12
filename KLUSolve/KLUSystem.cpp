@@ -14,10 +14,6 @@
 #include "KLUSolve.h"
 #include "KLUSystem.h"
 
-complex czero = {0.0, 0.0};
-static klu_common Common;
-static int common_init = 0;
-
 KLUSystem::KLUSystem()
 {
 	InitDefaults ();
@@ -47,6 +43,7 @@ void KLUSystem::null_pointers ()
 	T22 = NULL;
 	Numeric = NULL;
 	Symbolic = NULL;
+    Common = NULL;
 	acx = NULL;
 }
 
@@ -54,14 +51,8 @@ void KLUSystem::InitDefaults ()
 {
     m_nBus = 0;
     bFactored = false;
-	acx = NULL;
 	zero_indices ();
 	null_pointers ();
-	if (!common_init) {
-		klu_defaults (&Common);
-		Common.halt_if_singular = 0;
-		common_init = 1;
-	}
 }
 
 void KLUSystem::clear()
@@ -72,8 +63,9 @@ void KLUSystem::clear()
 
 	if (acx) delete [] acx;
 
-	if (Numeric) klu_z_free_numeric (&Numeric, &Common);
-	if (Symbolic) klu_free_symbolic (&Symbolic, &Common);
+	if (Numeric) klu_z_free_numeric (&Numeric, Common);
+	if (Symbolic) klu_free_symbolic (&Symbolic, Common);
+    if (Common) free (Common);
 
 	zero_indices ();
 	null_pointers ();
@@ -82,6 +74,10 @@ void KLUSystem::clear()
 int KLUSystem::Initialize (unsigned nBus, unsigned nV, unsigned nI)
 {
 	clear ();
+
+    Common = (klu_common *) malloc (sizeof (struct klu_common_struct));
+    klu_defaults (Common);
+    Common->halt_if_singular = 0;
 
 	m_nBus = m_nX = nBus;
 
@@ -111,7 +107,8 @@ int KLUSystem::SolveSystem (complex *_acxX, complex *_acxB)
     int rc = 0;
 	unsigned i;
 
-	acx[0] = czero;
+	acx[0].x = 0.0;
+    acx[0].y = 0.0;
 	for (i = 0; i < m_nBus; i++) {
 		acx[i+1] = _acxB[i];
 	}
@@ -226,27 +223,27 @@ int KLUSystem::Factor()
 	}
 
 	// then factor Y22
-	if (Numeric) klu_z_free_numeric (&Numeric, &Common);
-	if (Symbolic) klu_free_symbolic (&Symbolic, &Common);
+	if (Numeric) klu_z_free_numeric (&Numeric, Common);
+	if (Symbolic) klu_free_symbolic (&Symbolic, Common);
 	Numeric = NULL;
 	Symbolic = NULL;
 
 	if (Y22) {
-		Symbolic = klu_analyze (Y22->n, Y22->p, Y22->i, &Common);
-		Numeric = klu_z_factor (Y22->p, Y22->i, Y22->x, Symbolic, &Common);
-		m_fltBus = Common.singular_col;
-		if (Common.singular_col < Y22->n) {
+		Symbolic = klu_analyze (Y22->n, Y22->p, Y22->i, Common);
+		Numeric = klu_z_factor (Y22->p, Y22->i, Y22->x, Symbolic, Common);
+		m_fltBus = Common->singular_col;
+		if (Common->singular_col < Y22->n) {
 			++m_fltBus; // for 1-based NexHarm row numbers
 			m_fltBus += 0; // skip over the voltage source buses
 		} else {
 			m_fltBus = 0;  // no singular submatrix was found
 		}
-		if (Common.status == KLU_OK) {
+		if (Common->status == KLU_OK) {
 			// compute size of the factorization
 			m_NZpost += (Numeric->lnz + Numeric->unz - Numeric->n + 
 				((Numeric->Offp) ? (Numeric->Offp [Numeric->n]) : 0));
 			return 1;
-		} else if (Common.status == KLU_SINGULAR) {
+		} else if (Common->status == KLU_SINGULAR) {
 			return -1;
 		} else { // KLU_OUT_OF_MEMORY, KLU_INVALID, or KLU_TOO_LARGE
 			if (!m_fltBus) {
@@ -277,7 +274,7 @@ void KLUSystem::Solve (complex *acxVbus)
 
 	// solve and copy voltages into the output vector
 	// relying on Y22->n == m_nX from T22 creation by csz_spalloc
-	klu_z_solve (Symbolic, Numeric, Y22->n, 1, rhs, &Common);
+	klu_z_solve (Symbolic, Numeric, Y22->n, 1, rhs, Common);
 
 	offset = 1;
 	for (i = 0; i < m_nX; i++) {
@@ -291,28 +288,28 @@ void KLUSystem::Solve (complex *acxVbus)
 
 double KLUSystem::GetRCond ()
 {
-	klu_z_rcond (Symbolic, Numeric, &Common);
-	return Common.rcond;
+	klu_z_rcond (Symbolic, Numeric, Common);
+	return Common->rcond;
 }
 
 double KLUSystem::GetRGrowth ()
 {
 	if (Y22 == NULL) return 0.0;
-	klu_z_rgrowth (Y22->p, Y22->i, Y22->x, Symbolic, Numeric, &Common);
-	return Common.rgrowth;
+	klu_z_rgrowth (Y22->p, Y22->i, Y22->x, Symbolic, Numeric, Common);
+	return Common->rgrowth;
 }
 
 double KLUSystem::GetCondEst ()
 {
 	if (Y22 == NULL) return 0.0;
-	if (Y22->n > 1) klu_z_condest (Y22->p, Y22->x, Symbolic, Numeric, &Common);
-	return Common.condest;
+	if (Y22->n > 1) klu_z_condest (Y22->p, Y22->x, Symbolic, Numeric, Common);
+	return Common->condest;
 }
 
 double KLUSystem::GetFlops ()
 {
-	klu_z_flops (Symbolic, Numeric, &Common);
-	return Common.flops;
+	klu_z_flops (Symbolic, Numeric, Common);
+	return Common->flops;
 }
 
 unsigned KLUSystem::FindDisconnectedSubnetwork()
@@ -440,7 +437,8 @@ void KLUSystem::AddElement (unsigned iRow, unsigned iCol, complex &cpxVal,
 
 void KLUSystem::GetElement (unsigned iRow, unsigned iCol, complex &cpxVal)
 {
-	cpxVal = czero;
+	cpxVal.x = 0.0;
+    cpxVal.y = 0.0;
 	if (iRow > m_nBus || iCol > m_nBus) return;
 	if (--iRow < 0) return;
 	if (--iCol < 0) return;
