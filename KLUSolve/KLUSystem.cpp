@@ -438,10 +438,11 @@ void KLUSystem::AddElement (unsigned iRow, unsigned iCol, complex &cpxVal,
 void KLUSystem::GetElement (unsigned iRow, unsigned iCol, complex &cpxVal)
 {
 	cpxVal.x = 0.0;
-    cpxVal.y = 0.0;
+  cpxVal.y = 0.0;
 	if (iRow > m_nBus || iCol > m_nBus) return;
-	if (--iRow < 0) return;
-	if (--iCol < 0) return;
+	if (iRow == 0 || iCol == 0) return;
+	--iRow;
+	--iCol;
 
 	double *Ax;
 	int *Ap, *Ai;
