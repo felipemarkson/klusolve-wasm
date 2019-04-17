@@ -13,7 +13,7 @@ endif
 ifeq ($(uname_S),Darwin)
 RM=rm
 CC=g++
-CFLAGS=-c -Wall -O3 -fPIC -arch i386 -arch x86_64 -I../Include
+CFLAGS=-c -Wall -O3 -fPIC -arch x86_64 -I../Include
 LDFLAGS=-L../Lib -lstdc++
 .PHONY : all
 all : $(SO)
@@ -25,7 +25,7 @@ $(SO): $(OBJ)
 	cp ../CZSparse/Source/*.o Obj
 	cp ../KLU/Source/*.o Obj
 	sleep 2
-	gcc -dynamiclib -fPIC -arch i386 -arch x86_64 $^ $(wildcard Obj/*.o) $(LDFLAGS) -o $@
+	gcc -dynamiclib -fPIC -arch x86_64 $^ $(wildcard Obj/*.o) $(LDFLAGS) -o $@
 $(OBJ): %.o : %.cpp %.h
 	$(CC) $(CFLAGS) $< -o $@
 endif

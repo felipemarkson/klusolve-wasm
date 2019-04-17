@@ -30,7 +30,7 @@ endif
 
 ifeq ($(uname_S),Darwin)
 RM=rm
-CFLAGS=-Wall -O3 -fPIC -arch i386 -arch x86_64 -IInclude -I../Include
+CFLAGS=-Wall -O3 -fPIC -arch x86_64 -IInclude -I../Include
 .PHONY : all
 all : $(OBJ)
 endif

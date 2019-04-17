@@ -14,8 +14,8 @@ endif
 
 ifeq ($(uname_S),Darwin)
 RM=rm
-CFLAGS=-Wall -O3 -DREAD_KUNDERT -arch i386 -arch x86_64 -I../../Include
-LDFLAGS=-arch i386 -L../../Lib -lklusolve -lm
+CFLAGS=-Wall -O3 -DREAD_KUNDERT -arch x86_64 -I../../Include
+LDFLAGS=-arch x86_64 -L../../Lib -lklusolve -lm
 endif
 
 ifeq ($(uname_S),Linux)
