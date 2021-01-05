@@ -76,4 +76,25 @@ Then follow these instructions:
 (The Makefiles work with mingw32 and msys2, but are no longer maintained.)
 
 ===========================================================================
+Build Instructions - Linux and Mac OS X
+
+Install Make and then follow these instructions:
+
+1. From the _KLUSolve_ project directory:
+   a. `md build`
+   b. `cd build`
+   c. `cmake -DCMAKE_BUILD_TYPE=Release ..`
+   d. `make`
+   e. `make install`
+2. Test _KLDemo_ from the project-level Test subdirectory
+   a. `unzip kundert_test_matrices.zip`
+   b. `./run_concat.sh`
+   c. results are in _summary.out_
+   d. when finished, `rm *.mat`
+3. Link the KLUSolve _so_ or _dylib_ from the project-level Lib subdirectory
+
+(The standalone Makefiles are no longer maintained.)
+
+===========================================================================
+
 
