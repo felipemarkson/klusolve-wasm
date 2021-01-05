@@ -21,5 +21,5 @@ add_subdirectory(COLAMD)
 add_subdirectory(CSparse)
 add_subdirectory(CZSparse)
 add_subdirectory(KLU)
-#add_subdirectory(KLUSolve)
+add_subdirectory(KLUSolve)
 
