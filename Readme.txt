@@ -4,6 +4,9 @@ All rights reserved.
 GCC Makefiles, Copyright (c) 2016, Thomas E. McDermott
 All rights reserved.
 
+Cmake scripts, Copyright (c) 2020, Battelle Memorial Institute
+All rights reserved.
+
 KLU Version 1.0, May 31, 2007, by Timothy A. Davis and Ekanathan Palamadai.
 Copyright (C) 2004-2007, University of Florida
 
@@ -25,7 +28,7 @@ systems, licensed under LGPL version 2.1 (see files License.txt and
 lgpl_2_1.txt in this directory). For an example of use, see the OpenDSS 
 project at www.sourceforge.net/projects/electricdss
 
-Contact: Tom McDermott, tem42 at pitt dot edu
+Contact: Tom McDermott, t dot mcdermott at ieee dot org
 
 ==========================================================================
 
@@ -46,4 +49,31 @@ Contact: davis at tamu dot edu, or
 
 Reference Book: "Direct Methods for Sparse Linear Systems," Timothy A. Davis,
 SIAM, Philadelphia, 2006.
+
+===========================================================================
+Build Instructions - Windows
+
+Install compiler and Cmake from: https://visualstudio.microsoft.com/downloads/ 
+(find `Build Tools for Visual Studio 2019` under `Tools for Visual Studio 2019`)
+
+Then follow these instructions:
+
+1. Open the `x64 Native Tools Command Prompt for VS 2019`
+2. From the _KLUSolve_ project directory:
+   a. `md build`
+   b. `cd build`
+   c. `cmake ..`
+   d. `cmake --build . --config Release`
+   e. `cmake --build . --config Debug`
+   f. `cmake --install .`
+3. Test _KLDemo.exe_ from the project-level Test subdirectory
+   a. `unzip kundert_test_matrices.zip`
+   b. `run_concat.bat`
+   c. results are in _summary.out_
+   d. when finished, `del *.mat`
+4. Link _KLUSolve.dll_ from the project-level Lib subdirectory
+
+(The Makefiles work with mingw32 and msys2, but are no longer maintained.)
+
+===========================================================================
 

@@ -25,7 +25,8 @@ add_subdirectory(CSparse)
 add_subdirectory(CZSparse)
 add_subdirectory(KLU)
 add_subdirectory(KLUSolve)
-install(TARGETS KLUSolve DESTINATION klu)
+#install(TARGETS KLUSolve DESTINATION klu)
+install(TARGETS KLUSolve DESTINATION "${CMAKE_SOURCE_DIR}/Lib")
 
 # demonstration program for local testing
 add_executable(KLDemo KLU/Demo/klu_simple.c)
