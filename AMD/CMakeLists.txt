@@ -1,4 +1,4 @@
-add_library(AMD 
+add_library(AMD
  Source/amd_1.c
  Source/amd_2.c
  Source/amd_aat.c

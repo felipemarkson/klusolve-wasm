@@ -1,4 +1,4 @@
-add_library(KLU 
+add_library(KLU
  Source/klu.c
  Source/klu_analyze.c
  Source/klu_analyze_given.c

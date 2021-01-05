@@ -1,4 +1,4 @@
-add_library(COLAMD 
+add_library(COLAMD
  Source/colamd.c
  Source/colamd_global.c)
 

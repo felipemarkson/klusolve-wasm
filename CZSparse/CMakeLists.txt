@@ -1,2 +1,2 @@
-add_library(CZSparse 
+add_library(CZSparse
  Source/csz_stuff.c)

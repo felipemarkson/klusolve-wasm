@@ -1,4 +1,4 @@
-add_library(BTF 
+add_library(BTF
  Source/btf_maxtrans.c
  Source/btf_order.c
  Source/btf_strongcomp.c)

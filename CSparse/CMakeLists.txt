@@ -1,4 +1,4 @@
-add_library(CSparse 
+add_library(CSparse
  Source/cs_add.c
  Source/cs_amd.c
  Source/cs_chol.c
