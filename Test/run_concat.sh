@@ -4,5 +4,5 @@ rm -f summary.out
 for f in *.mat 
 do
     echo $f >> summary.out
-    ./KLDemo.exe $f >> summary.out
+    ./KLDemo $f >> summary.out
 done
