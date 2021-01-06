@@ -18,5 +18,5 @@ target_link_libraries(klusolve PRIVATE
  AMD
  BTF
  COLAMD
- CSparse
- CZSparse)
+ CZSparse
+ CSparse)
