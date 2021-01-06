@@ -81,7 +81,7 @@ Build Instructions - Linux and Mac OS X
 Install Make and then follow these instructions:
 
 1. From the _KLUSolve_ project directory:
-   a. `md build`
+   a. `mkdir build`
    b. `cd build`
    c. `cmake -DCMAKE_BUILD_TYPE=Release ..`
    d. `make`
