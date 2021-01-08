@@ -25,8 +25,6 @@ add_subdirectory(CSparse)
 add_subdirectory(CZSparse)
 add_subdirectory(KLU)
 add_subdirectory(KLUSolve)
-#install(TARGETS klusolve DESTINATION klu)
-install(TARGETS klusolve DESTINATION "${CMAKE_SOURCE_DIR}/Lib")
 
 # demonstration program for local testing
 add_executable(KLDemo KLU/Demo/klu_simple.c)
@@ -41,4 +39,15 @@ target_link_libraries(KLDemo PRIVATE
 if(UNIX)
   target_link_libraries(KLDemo PRIVATE m)
 endif()
+
+# install for testing
+install(TARGETS klusolve DESTINATION "${CMAKE_SOURCE_DIR}/Lib")
 install(TARGETS KLDemo DESTINATION "${CMAKE_SOURCE_DIR}/Test")
+#install for deployment
+install(TARGETS klusolve 
+  RUNTIME DESTINATION bin
+  LIBRARY DESTINATION lib
+  ARCHIVE DESTINATION lib)
+install(FILES KLUSolve/KLUSolve.h DESTINATION include)
+
+
