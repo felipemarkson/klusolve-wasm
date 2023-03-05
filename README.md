@@ -4,9 +4,9 @@ This repository has scripts, instructions, and modifications to compile KLUSolve
 
 The original KLUSolve code can be found in the `original-svn` branch or in [KLUSolve repository](https://sourceforge.net/projects/klusolve/).
 
-As explicit in [`LICENSE`](LICENSE), this repository uses the same license, LGPL 2.1 or later.
+As explicit in `LICENSE`, this repository uses the same license, LGPL 2.1 or later.
 
-For the KLUSolve's original copyrights, please see [`Readme_original.txt`](Readme_original.txt).
+For the KLUSolve's original copyrights, please see `Readme_original.txt`.
 
 
 ## Requirements
@@ -19,9 +19,9 @@ The build and the tests were made in an linux based distribution.
 
 ## How to build
 
-An example of how to build can be found in [`scripts/build_wasm.sh`](scripts/build_wasm.sh).
+An example of how to build can be found in `scripts/build_wasm.sh`
 
-An example of usage can be found in [`test_wasm/main.c`](test_wasm/main.c) and how to build it can be found in [`scripts/build_test_wasm.sh`](`scripts/build_test_wasm.sh`).
+An example of usage can be found in `test_wasm/main.c` and how to build it can be found in `scripts/build_test_wasm.sh`.
 
 ## Copyrights
 
