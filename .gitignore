@@ -5,6 +5,8 @@ Lib/
 libklusolve/
 .vscode/
 
+dist/*
+
 test_wasm/*
 !test_wasm/*.c*
 !test_wasm/*.h*
