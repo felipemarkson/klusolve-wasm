@@ -5,6 +5,8 @@ rm -r Test/KLD*
 
 mkdir build
 cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DCMAKE_INSTALL_PREFIX=../libklusolve ..
+cmake   -DCMAKE_BUILD_TYPE=Release \
+        -DCMAKE_INSTALL_PREFIX=../libklusolve \
+        ..
 make
 make install
