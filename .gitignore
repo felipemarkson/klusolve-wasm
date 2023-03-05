@@ -4,3 +4,7 @@ Test/KLD*
 Lib/
 libklusolve/
 .vscode/
+
+test_wasm/*
+!test_wasm/*.c*
+!test_wasm/*.h*
