@@ -2,7 +2,7 @@ build/
 Test/kundert_test_matrices/
 Test/KLD*
 Lib/
-libklusolve/
+libklusolve*/
 .vscode/
 
 dist/*
